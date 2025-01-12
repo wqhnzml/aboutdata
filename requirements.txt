@@ -1,2 +1,4 @@
 hypercorn
 fastapi
+email-validator
+uvicorn
