@@ -3,8 +3,10 @@
 
 from fastapi import FastAPI
 
+from routers import user_router  # 确保导入的是 user_router
+
 app = FastAPI(
-    title="文档的标题",
+    title="测试学习 的标题",
     description='关于该API文档一些描述信息补充说明',
     version='v1.0.0',
     openapi_prefix='',
@@ -37,15 +39,6 @@ app = FastAPI(
         {"url": "https://xx2.xx2.com", "description": "线上生产环境"},
     ]
 )
+app.include_router(user_router.router, prefix="/users", tags=["users"])
 
-@app.get(path="/index")
-async def index():
-    return {"index": "index"}
 
-if __name__ == "__main__":
-    import uvicorn
-    import os
-
-    app_modeel_name = os.path.basename(__file__).replace(".py", "")
-    print(app_modeel_name)
-    uvicorn.run(f"{app_modeel_name}:app", host='127.0.0.1', reload=True)
