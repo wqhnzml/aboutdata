@@ -29,7 +29,7 @@ exception_handlers=exception_handlers,
     redoc_url='/redoc',
     openapi_url="/openapi/openapi_json.json",
     terms_of_service="https://terms/团队的官网网站/",
-    deprecated=True,
+    # deprecated=True,
     contact={
         "name": "邮件接收者信息",
         "url": "https://xxx.cc",
