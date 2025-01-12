@@ -3,11 +3,16 @@
 from fastapi import APIRouter
 from app.users.users import get_user_list
 
-router = APIRouter() #总路由页面
+router = APIRouter(
+    prefix="/users",
+    tags=["users"]
+)
 
+
+# 路由只负责调用服务层，保持清晰
 @router.get("/")
 async def get_users():
-    print('用户总路由')
+    print("用户子路由部分")
     return get_user_list()
 
 # @router.get("/{user_id}")

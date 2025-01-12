@@ -1,11 +1,24 @@
 #!/usr/bin/evn python
 # -*- coding: utf-8 -*-
-
 from fastapi import FastAPI
+from starlette.responses import JSONResponse
 
-from routers import user_router  # 确保导入的是 user_router
+from routers.routers import api_router
+
+
+async def exception_not_found(request, exc):
+    return JSONResponse({
+        "code": exc.status_code,
+        "error": "没有定义这个请求地址"},
+        status_code=exc.status_code)
+
+exception_handlers = {
+    404: exception_not_found,
+}
+
 
 app = FastAPI(
+exception_handlers=exception_handlers,
     title="测试学习 的标题",
     description='关于该API文档一些描述信息补充说明',
     version='v1.0.0',
@@ -39,6 +52,8 @@ app = FastAPI(
         {"url": "https://xx2.xx2.com", "description": "线上生产环境"},
     ]
 )
-app.include_router(user_router.router, prefix="/users", tags=["users"])
+app.include_router(api_router)
+
+
 
 
