@@ -2,3 +2,7 @@ hypercorn
 fastapi
 email-validator
 uvicorn
+alembic
+cryptography==41.0.3  # 或者其他适合的版本
+PyMySQL
+mysql-connector-python
